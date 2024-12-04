@@ -76,6 +76,13 @@ body{
     color: var(--tenne-tawny);
     font-family: inherit;
     outline: 0;
+    margin-top: 1rem;
+}
+.meal-filter-box label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--tenne-tawny);
 }
 .search-control::placeholder{
     color: var(--tenne-tawny);
@@ -231,7 +238,6 @@ body{
     -ms-border-radius: 0.3rem;
     -o-border-radius: 0.3rem;
 }
-
 .recipe-category{
     background: #fff;
     font-weight: 600;
@@ -244,11 +250,9 @@ body{
     -ms-border-radius: 0.3rem;
     -o-border-radius: 0.3rem;
 }
-
 .recipe-instruct{
     padding: 1rem 0;
 }
-
 .recipe-meal-img img{
     width: 100px;
     height: 100px;
@@ -260,11 +264,9 @@ body{
     margin: 0 auto;
     display: block;
 }
-
 .recipe-link{
     margin: 1.4rem 0;
 }
-
 .recipe-link a{
     color: #fff;
     font-size: 1.2rem;
@@ -275,12 +277,42 @@ body{
     -ms-transition: all 0.4s linear;
     -o-transition: all 0.4s linear;
 }
-
 .recipe-link a:hover{
     opacity: 0.8;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
 
+.pagination .btn {
+    background-color: var(--tenne-tawny);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination .btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination .btn:hover:not(:disabled) {
+    background-color: var(--tenne-tawny-dark);
+}
+
+#page-info {
+    font-size: 1.1rem;
+    color: var(--tenne-tawny);
+    margin: 0 1rem;
+}
 /*  */
 .notFound{
     grid-template-columns: 1fr!important;
