@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recipes By Appliance</title>
+  <title>Find Meal For Your Ingredients</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -19,29 +19,41 @@
           </button>
         </div>
         <div class="meal-filter-box">
-          <label for="appliance-select">Select Appliance:</label>
-          <select id="appliance-select" class="search-control">
-            <option value="">Select Appliance</option>
-            <option value="pan">Pan</option>
-            <option value="steam">Steamer</option>
-            <option value="saucepan">Saucepan</option>
-            <option value="oven">Oven</option>
-            <option value="stove">Stove</option>
-            <option value="fry">Fryer</option>
-            <option value="casserole">Casserole Dish</option>
-            <option value="blend">Blender</option>
-            <option value="pot">Pot</option>
-            <option value="gas">Gas</option>
-          </select>
+          <div class="filters">
+            <select id="appliance-select" class="search-control">
+              <option value="">Select Appliance</option>
+              <option value="pan">Pan</option>
+              <option value="steam">Steamer</option>
+              <option value="saucepan">Saucepan</option>
+              <option value="oven">Oven</option>
+              <option value="stove">Stove</option>
+              <option value="fry">Fryer</option>
+              <option value="casserole">Casserole Dish</option>
+              <option value="blend">Blender</option>
+              <option value="pot">Pot</option>
+              <option value="gas">Gas</option>
+            </select>
+            <select id="dietary-select" class="search-control">
+              <option value="">Select Dietary Restriction</option>
+              <option value="chicken">Chicken Only</option>
+              <option value="pork">Pork Only</option>
+              <option value="beef">Beef Only</option>
+              <option value="fish">Fish Only</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="vegan">Vegan</option>
+              <option value="gluten free">Gluten-Free</option>
+            </select>
+          </div>
         </div>
       </div>
       <div class="meal-result">
         <h2 class="title">Your Search Results:</h2>
         <div id="meal"></div>
-        <div class="pagination">
-          <button id="prev-btn" class="btn">Previous</button>
-          <span id="page-info"></span>
-          <button id="next-btn" class="btn">Next</button>
+        
+        <div id="pagination-container" class="pagination">
+            <button id="prev-btn" class="btn pagination-btn">Previous</button>
+            <span id="page-info"></span>
+            <button id="next-btn" class="btn pagination-btn">Next</button>
         </div>
       </div>
       <div class="meal-details">
