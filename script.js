@@ -3,9 +3,9 @@ const mealList = document.getElementById('meal');
 const mealDetailsContent = document.querySelector('.meal-details-content');
 const recipeCloseBtn = document.getElementById('recipe-close-btn');
 const applianceSelect = document.getElementById('appliance-select');
-const dietarySelect = document.getElementById('dietary-select');
+const categorySelect = document.getElementById('category-select');
 const paginationContainer = document.getElementById('pagination-container');
-
+let allMeals = [];
 let currentPage = 1;
 const itemsPerPage = 12;
 
@@ -26,8 +26,10 @@ recipeCloseBtn.addEventListener('click', () => {
 function getMealList() {
     let searchInputTxt = document.getElementById('search-input').value.trim().toLowerCase();
     let selectedAppliance = applianceSelect.value.toLowerCase();
-    let selectedDietary = dietarySelect.value.toLowerCase();
+    let selectedCategory = categorySelect.value.toLowerCase();
     let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=`;
+
+    let filteredMeals = allMeals;
 
     fetch(url)
     .then(response => response.json())
@@ -36,12 +38,12 @@ function getMealList() {
         if (data.meals) {
             let filteredMeals = data.meals;
 
-            if (searchInputTxt || selectedAppliance || selectedDietary) {
+            if (searchInputTxt || selectedAppliance || selectedCategory) {
                 filteredMeals = data.meals.filter(meal => {
                     const instructionsMatch = meal.strInstructions.includes(searchInputTxt);
                     const applianceMatch = selectedAppliance ? meal.strInstructions.toLowerCase().includes(selectedAppliance) : true;
-                    const dietaryMatch = selectedDietary ? meal.strCategory.toLowerCase().includes(selectedDietary) : true;
-                    return instructionsMatch && applianceMatch && dietaryMatch;
+                    const categoryMatch = selectedCategory ? meal.strCategory.toLowerCase().includes(selectedCategory) : true;
+                    return instructionsMatch && applianceMatch && categoryMatch;
                 });
             }
 
@@ -118,11 +120,30 @@ function renderPagination(totalItems, itemsPerPage, currentPage) {
 
     document.querySelectorAll('.pagination-btn').forEach(button => {
         button.addEventListener('click', (e) => {
-            currentPage = parseInt(e.target.getAttribute('data-page'));
-            getMealList();
+            const page = parseInt(e.target.getAttribute('data-page'));
+            if (!isNaN(page)) {
+                currentPage = page;
+                getMealList();
+            }
         });
     });
 }
 
+// Fetch and populate categories
+function fetchCategories() {
+    let url = `https://www.themealdb.com/api/json/v1/1/categories.php`;
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        let categories = data.categories;
+        let options = '<option value="">Select Category</option>';
+        categories.forEach(category => {
+            options += `<option value="${category.strCategory.toLowerCase()}">${category.strCategory}</option>`;
+        });
+        categorySelect.innerHTML = options;
+    });
+}
+
 // Perform initial fetch
+fetchCategories();
 getMealList();

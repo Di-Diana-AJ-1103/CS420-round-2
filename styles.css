@@ -68,7 +68,7 @@ body{
     margin-right: 1rem;
 }
 
-#appliance-select {
+#appliance-select, #category-select {
     width: auto;
     padding: 0.5rem;
     border-radius: 2rem;
